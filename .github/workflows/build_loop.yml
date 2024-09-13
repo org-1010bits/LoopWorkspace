@@ -289,7 +289,10 @@ jobs:
 
           # the final customization listed above CANNOT have a continuation character
           # more customizations can be pasted after this line
-          
+      
+          # Loop: BolusInput.swift: Change watch bolus increment from 0.50 unit to 0.25 unit
+          curl https://github.com/org-1010bits/Loop/commit/1855889f26fabb631852b8da62c039ef9657274a.patch | git apply -v --directory=Loop
+
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables
         run: |
