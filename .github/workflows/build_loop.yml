@@ -231,6 +231,9 @@ jobs:
           # Loop: BolusInput.swift: Change watch bolus increment from 0.50 unit to 0.25 unit
           curl https://github.com/org-1010bits/Loop/commit/1855889f26fabb631852b8da62c039ef9657274a.patch | git apply -v --directory=Loop
 
+          # NightscoutService: OTPManager.swift: Changed the Nightscout OTP codes accepted from 2 to 6
+          curl https://github.com/org-1010bits/NightscoutService/commit/5914d71772b69124e48d2003f33981a9298dc6af.patch | git apply -v --directory=NightscoutService
+
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables
         run: |
