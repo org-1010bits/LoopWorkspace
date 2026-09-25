@@ -234,6 +234,28 @@ jobs:
           # and make sure to specify the submodule by setting "--directory=(submodule_name)".
           # Several patches may be added per submodule.
           # Adding comments (#) may be useful to easily tell the individual patches apart.
+          # The lines below add the customizations listed using the CustomizationSelect script
+          # The "\" is a continuation character 
+          #   the line following a "\" should not be blank
+          /bin/bash -c "$(curl -fsSL \
+          https://raw.githubusercontent.com/loopandlearn/lnl-scripts/main/CustomizationSelect.sh)" \
+          future_carbs_4h \
+          high_carb_limit \
+          override_sens \
+          now_line \
+          meal_days \
+          profiles \
+          basal_lock \
+          negative_insulin
+
+          # the final customization listed above CANNOT have a continuation character
+          # more customizations can be pasted after this line
+      
+          # Loop: BolusInput.swift: Change watch bolus increment from 0.50 unit to 0.25 unit
+          curl https://github.com/org-1010bits/Loop/commit/1855889f26fabb631852b8da62c039ef9657274a.patch | git apply -v --directory=Loop
+
+          # NightscoutService: OTPManager.swift: Changed the Nightscout OTP codes accepted from 2 to 6
+          curl https://github.com/org-1010bits/NightscoutService/commit/5914d71772b69124e48d2003f33981a9298dc6af.patch | git apply -v --directory=NightscoutService
 
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables
